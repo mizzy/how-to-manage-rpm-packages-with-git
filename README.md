@@ -2,7 +2,7 @@
 
 ## Problem
 
-Now I manage rpm packages like this https://github.com/paperboy-sqale/sqale-yum .
+Now I manage rpm packages like [this repo](https://github.com/paperboy-sqale/sqale-yum).
 
 This repository has source and binary packages.In this way, I have these problems.
 
@@ -21,21 +21,21 @@ Build.rb build source/binary packages and sync to other servers.
 
 This sample repo assume 3 package patterns.
 
-### pattern 1. ngx_openresty
+### Pattern 1. ngx_openresty
 
 In this pattern, all we have to manage is spec file only. 
 
 Build.rb gets the source file in spec file and build source and binary rpm.
 
 
-### pattern 2. ffmpeg
+### Pattern 2. ffmpeg
 
 In this pattern, package directory has a spec file, a patch file and ffmpeg preset files.
 
 Build.rb gets the source file in spec file, copy other files to rpmbuild SOURCES directory and build source and binary rpm.
 
 
-### pettern 3. memcached
+### Pattern 3. memcached
 
 In this pattern, package directory has a spec file and source rpm file.
 
@@ -47,7 +47,7 @@ We can get memcached source with spectool command, but cannot get memcachesd.sys
 Source1:        memcached.sysv
 ```
 
-So source rpm are inlucdes in this directory.
+So source rpm are inlucded in this directory.
 
 ----
 
