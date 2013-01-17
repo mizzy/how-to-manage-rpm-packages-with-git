@@ -54,4 +54,4 @@ So source rpm are inlucded in this directory.
 ## TODO
 
  * Brush up build script
-
+ * Support git url for Source* in spec file
