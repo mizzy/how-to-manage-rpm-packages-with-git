@@ -1,0 +1,23 @@
+diff -ru ffmpeg-0.8.2.org/libavformat/movenc.c ffmpeg-0.8.2/libavformat/movenc.c
+--- ffmpeg-0.8.2.org/libavformat/movenc.c	2011-08-10 04:48:30.000000000 +0900
++++ ffmpeg-0.8.2/libavformat/movenc.c	2011-09-05 14:20:44.000000000 +0900
+@@ -2225,6 +2225,7 @@
+                 track->height = track->tag>>24 == 'n' ? 486 : 576;
+             }
+             track->timescale = st->codec->time_base.den;
++            if(track->timescale < 600) track->timescale = 600;
+             if (track->mode == MODE_MOV && track->timescale > 100000)
+                 av_log(s, AV_LOG_WARNING,
+                        "WARNING codec timebase is very high. If duration is too long,\n"
+diff -ru ffmpeg-0.8.2.org/libavformat/utils.c ffmpeg-0.8.2/libavformat/utils.c
+--- ffmpeg-0.8.2.org/libavformat/utils.c	2011-08-10 04:48:30.000000000 +0900
++++ ffmpeg-0.8.2/libavformat/utils.c	2011-09-05 14:20:13.000000000 +0900
+@@ -3083,7 +3083,7 @@
+         av_log(s, AV_LOG_ERROR,
+                "Application provided invalid, non monotonically increasing dts to muxer in stream %d: %"PRId64" >= %"PRId64"\n",
+                st->index, st->cur_dts, pkt->dts);
+-        return AVERROR(EINVAL);
++        pkt->dts = st->cur_dts + 1;
+     }
+     if(pkt->dts != AV_NOPTS_VALUE && pkt->pts != AV_NOPTS_VALUE && pkt->pts < pkt->dts){
+         av_log(s, AV_LOG_ERROR, "pts < dts in stream %d\n", st->index);
